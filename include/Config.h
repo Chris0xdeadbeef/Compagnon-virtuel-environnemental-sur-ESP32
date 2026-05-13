@@ -5,7 +5,9 @@
 /**
  * @file Config.h
  * @brief Configuration globale du projet.
+ * @brief Débit de communication série UART.
  */
+constexpr uint32_t SERIAL_BAUD_RATE = 115200;
 
 // --------------
 // TFT ST7735
