@@ -47,8 +47,18 @@ constexpr uint8_t TFT_SCK_PIN = 18;
 constexpr uint8_t TFT_MOSI_PIN = 23;
 
 // --------------
-// I2C SCD40
+// I2C SCD30
 // --------------
+
+/**
+ * @brief Offset appliqué à la température du SCD30.
+ */
+constexpr float TEMPERATURE_OFFSET = -0.6f;
+
+/**
+ * @brief Offset appliqué à la humidité du SCD30.
+ */
+constexpr float HUMIDITY_OFFSET = -7.f;
 
 /**
  * @brief Pin SDA du bus I2C.
