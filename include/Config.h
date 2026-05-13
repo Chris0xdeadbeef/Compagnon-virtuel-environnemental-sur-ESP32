@@ -1,10 +1,18 @@
+/**
+ * @file Config.h
+ * @brief Configuration globale du projet.
+ */
+
 #pragma once
 
 #include <Arduino.h>
 
+
+// --------------
+// UART
+// --------------
+
 /**
- * @file Config.h
- * @brief Configuration globale du projet.
  * @brief Débit de communication série UART.
  */
 constexpr uint32_t SERIAL_BAUD_RATE = 115200;
