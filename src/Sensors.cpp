@@ -6,13 +6,13 @@
 #include "Sensors.h"
 #include <Arduino.h>
 #include <Wire.h>
-#include <SparkFun_SCD4x_Arduino_Library.h>
+#include <SparkFun_SCD30_Arduino_Library.h>
 #include "Config.h"
 
 /**
  * @brief Instance du capteur environnemental SCD40.
  */
-SCD4x airSensor;
+SCD30 airSensor;
 
 bool initSensors()
 {
@@ -30,10 +30,10 @@ bool initSensors()
 
 void updateSensors(EnvironmentalData& data)
 {
-    if (airSensor.readMeasurement())
+    if (airSensor.dataAvailable())
     {
-        data.temperature = airSensor.getTemperature();
-        data.humidity = airSensor.getHumidity();
+        data.temperature = airSensor.getTemperature() + TEMPERATURE_OFFSET;
+        data.humidity = airSensor.getHumidity() + HUMIDITY_OFFSET;
     }
 
     data.isNight = digitalRead(LIGHT_SENSOR_D0_PIN);
