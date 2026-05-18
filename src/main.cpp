@@ -1,8 +1,21 @@
+/**
+ * @file main.cpp
+ * @brief Point d'entrée principal du projet.
+ */
+
 #include <Arduino.h>
-#include "Config.h"
+
+#include "AnimationManager.h"
+#include "DisplayManager.h"
 #include "Sensors.h"
+#include "SpriteManager.h"
+#include "StateResolver.h"
+#include "Config.h"
 #include "Types.h"
 
+/**
+ * @brief Données environnementales globales.
+ */
 EnvironmentalData environmentalData;
 
 void setup()
@@ -11,15 +24,54 @@ void setup()
 
     if (!initSensors())
     {
-        Serial.println("Erreur initialisation capteurs");
+        Serial.println(
+            "Erreur initialisation capteurs");
 
-        while (true) {}
+        while (true)
+        {
+        }
     }
+
+    if (!initSprites())
+    {
+        Serial.println(
+            "Erreur initialisation SPIFFS");
+
+        while (true)
+        {
+        }
+    }
+
+    initDisplay();
+
+    Serial.println("Systeme pret");
 }
 
 void loop()
 {
     updateSensors(environmentalData);
+
+    const TemperatureState
+        temperatureState =
+            resolveTemperatureState(
+                environmentalData.temperature);
+
+    const HumidityState
+        humidityState =
+            resolveHumidityState(
+                environmentalData.humidity);
+
+    const LightState
+        lightState =
+            resolveLightState(
+                environmentalData.isNight);
+
+    const SpriteState spriteState
+    {
+        temperatureState,
+        humidityState,
+        lightState
+    };
 
     Serial.print("Temperature: ");
     Serial.print(environmentalData.temperature);
@@ -32,5 +84,5 @@ void loop()
     Serial.print("Nuit: ");
     Serial.println(environmentalData.isNight);
 
-    delay(300);
+    playAnimation(spriteState);
 }
