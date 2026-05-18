@@ -7,10 +7,10 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <SparkFun_SCD30_Arduino_Library.h>
-#include "Config.h"
+#include "../../include/Config.h"
 
 /**
- * @brief Instance du capteur environnemental SCD40.
+ * @brief Instance du capteur environnemental SCD30.
  */
 SCD30 airSensor;
 
