@@ -29,7 +29,7 @@ constexpr uint8_t TFT_CS_PIN = 5;
 /**
  * @brief Pin Data/Command du TFT ST7735.
  */
-constexpr uint8_t TFT_DC_PIN = 16;
+constexpr uint8_t TFT_DC_PIN = 2;
 
 /**
  * @brief Pin Reset du TFT ST7735.
@@ -163,17 +163,3 @@ constexpr uint8_t LIGHT_DARK_STATE = HIGH;
  * @brief Valeur correspondant à l'état jour.
  */
 constexpr uint8_t LIGHT_BRIGHT_STATE = LOW;
-
-// --------------
-// Animation
-// --------------
-
-/**
- * @brief Nombre de frames par animation.
- */
-constexpr uint8_t ANIMATION_FRAME_COUNT = 3;
-
-/**
- * @brief Temps entre deux frames en millisecondes.
- */
-constexpr uint16_t FRAME_DELAY_MS = 15;
